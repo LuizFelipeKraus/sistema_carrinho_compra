@@ -26,7 +26,12 @@ Este projeto consiste em três microserviços que lidam com pedidos, produtos e 
    - URL: [http://localhost:8086/api/product](http://localhost:8086/api/product)
    - Exemplo de produto:
      ```json
-     {"name":"Laptop Anthony","describe":"Powerful laptop for professional use","valor":1299.99,"quantidade":100}
+     {
+        "name":"Laptop ",
+        "describe":"Powerful laptop for professional use",
+        "valor":1299.99,
+        "quantidade":100
+    }
      ```
 
 3. **Auth Service**
@@ -49,7 +54,7 @@ Este projeto consiste em três microserviços que lidam com pedidos, produtos e 
 
 1. Execute o EUREKA Server:
    ```bash
-   cd eureka-server
+   cd eureka
    ./mvnw spring-boot:run
 
 2. Execute o NOTIFICATION Server:
