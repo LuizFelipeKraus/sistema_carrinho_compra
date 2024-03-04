@@ -1,0 +1,10 @@
+INSERT INTO product (name, describe, valor, quantidade) VALUES ('Smartphone XYZ', 'High-end smartphone with cutting-edge features', 799.99, 50);
+INSERT INTO product (name, describe, valor, quantidade) VALUES ('Laptop ABC', 'Powerful laptop for professional use', 1299.99, 30);
+INSERT INTO product (name, describe, valor, quantidade) VALUES ('Wireless Headphones', 'Over-ear wireless headphones with noise cancellation', 149.99, 100);
+INSERT INTO product (name, describe, valor, quantidade) VALUES ('Coffee Maker Deluxe', 'Premium coffee maker with built-in grinder', 199.99, 20);
+INSERT INTO product (name, describe, valor, quantidade) VALUES ('Fitness Tracker Pro', 'Advanced fitness tracker with heart rate monitor', 79.99, 75);
+INSERT INTO product (name, describe, valor, quantidade) VALUES ('Smart TV 4K', '55-inch smart TV with 4K resolution', 899.99, 15);
+INSERT INTO product (name, describe, valor, quantidade) VALUES ('Gaming Console X', 'Next-gen gaming console with immersive gaming experience', 499.99, 40);
+INSERT INTO product (name, describe, valor, quantidade) VALUES ('Digital Camera Ultra', 'Professional-grade digital camera with high-resolution sensor', 1299.99, 10);
+INSERT INTO product (name, describe, valor, quantidade) VALUES ('Smart Thermostat', 'Energy-efficient smart thermostat for home automation', 129.99, 60);
+INSERT INTO product (name, describe, valor, quantidade) VALUES ('Robot Vacuum Cleaner', 'Smart robot vacuum for automated cleaning', 249.99, 25);

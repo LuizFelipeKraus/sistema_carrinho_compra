@@ -1,3 +1,2 @@
-INSERT INTO company(name) VALUES ('Empresa 1');
-INSERT INTO company(name) VALUES ('Empresa 2');
-INSERT INTO company(name) VALUES ('Empresa 3');
+INSERT INTO company(name) VALUES ('Usuário Padrão');
+INSERT INTO company(name) VALUES ('Usuário Administrador');

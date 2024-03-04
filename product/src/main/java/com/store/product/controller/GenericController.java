@@ -1,6 +1,6 @@
-package com.store.auth.controller;
+package com.store.product.controller;
 
-import com.store.auth.service.GenericService;
+import com.store.product.service.GenericService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
