@@ -31,8 +31,7 @@ Este projeto consiste em três microserviços que lidam com pedidos, produtos e 
         "describe":"Powerful laptop for professional use",
         "valor":1299.99,
         "quantidade":100
-     }
-    ```
+     } ```
 
 3. **Auth Service**
    - URL: [http://localhost:8082/api/user](http://localhost:8082/api/user)
