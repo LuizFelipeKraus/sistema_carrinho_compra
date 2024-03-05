@@ -8,6 +8,9 @@ import com.store.order.domain.OrderItem;
 import com.store.order.repository.OrderItemRepository;
 import com.store.order.repository.OrderRepository;
 import com.store.order.service.OrderService;
+
+import java.util.Map;
+
 import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -15,6 +18,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
+import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.client.WebClient;
 
 
@@ -48,6 +52,7 @@ public class OrderServiceImpl extends GenericServiceImpl<Order, Long, OrderRepos
 
         for (OrderItem item : order.getOrderItems()) {
             validateProduct(item.getProduct_id());
+            updateProductQuantity(item.getProduct_id(), 1);
         }
 
         Order savedOrder = repository.save(order);
@@ -62,6 +67,31 @@ public class OrderServiceImpl extends GenericServiceImpl<Order, Long, OrderRepos
         sendNotification(savedOrder);
     }
 
+    private void validateProduct(Long productId) {
+        this.productWebClient.get()
+                .uri("/product/" + String.valueOf(productId))
+                .accept(MediaType.APPLICATION_JSON)
+                .exchangeToMono(response -> {
+                    if (response.statusCode().equals(HttpStatus.NOT_FOUND)) {
+                        throw new RuntimeException("Produto não encontrado com o ID: " + productId);
+                    }
+                    return response.toEntity(String.class);
+                }).block();
+    }
+
+    private void updateProductQuantity(Long productId, Integer newQuantity) {
+        this.productWebClient.put()
+                .uri("/product/" + String.valueOf(productId) + "/updateQuantity?quantity=" + String.valueOf(newQuantity))
+                .accept(MediaType.APPLICATION_JSON)
+                .body(BodyInserters.fromValue(Map.of("quantity", newQuantity)))
+                .exchangeToMono(response -> {
+                    if (!response.statusCode().is2xxSuccessful()) {
+                        throw new RuntimeException("Falha ao atualizar a quantidade do produto com o ID: " + productId);
+                    }
+                    return response.toEntity(String.class);
+                }).block();
+    }
+
     private void validateUser(Long userId) {
         this.userWebClient.get()
                 .uri("/user/" + String.valueOf(userId))
@@ -74,17 +104,6 @@ public class OrderServiceImpl extends GenericServiceImpl<Order, Long, OrderRepos
                 }).block();
     }
 
-    private void validateProduct(Long productId) {
-        this.productWebClient.get()
-                .uri("/product/" + String.valueOf(productId))
-                .accept(MediaType.APPLICATION_JSON)
-                .exchangeToMono(response -> {
-                    if (response.statusCode().equals(HttpStatus.NOT_FOUND)) {
-                        throw new RuntimeException("Produto não encontrado com o ID: " + productId);
-                    }
-                    return response.toEntity(String.class);
-                }).block();
-    }
 
     public void sendNotification(Order order){
         try{

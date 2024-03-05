@@ -49,7 +49,7 @@ public class RabbitMQComponentImpl  implements RabbitMQComponent {
                     .bodyToMono(String.class)
                     .block();
             Map<String, Object> product = emailServiceImpl.convertToObject(response_product);
-            String content = emailServiceImpl.constructOrderContent((String) product.get("name"), (String) user.get("username"));
+            String content = emailServiceImpl.constructOrderContent((String) product.get("name"), (String) user.get("name"));
 
             emailServiceImpl.sendEmail(content, (String) user.get("email"), "Notificação XPTO");
         }

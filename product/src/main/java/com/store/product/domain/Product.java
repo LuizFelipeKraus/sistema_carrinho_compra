@@ -11,6 +11,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Min;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -34,9 +35,11 @@ public class Product {
     private String describe;
 
     @Column(nullable = false)
-    private Double valor;
+    @Min(value = 0, message = "O preço deve ser no mínimo 0")
+    private Double price;
 
     @Column(nullable = false)
-    private Integer quantidade;
+    @Min(value = 0, message = "A quantidade deve ser no mínimo 0")
+    private Integer quantity;
 
 }
