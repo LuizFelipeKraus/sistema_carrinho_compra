@@ -39,7 +39,7 @@ Este projeto consiste em três microserviços que lidam com pedidos, produtos e 
 
 ## Pré-requisitos
 
-- Java 8 ou superior instalado
+- Java 17 ou superior instalado
 - EUREKA Server configurado
 - RabbitMQ configurado
 
@@ -54,24 +54,24 @@ Este projeto consiste em três microserviços que lidam com pedidos, produtos e 
 1. Execute o EUREKA Server:
    ```bash
    cd eureka
-   ./mvnw spring-boot:run
+   ./mvn spring-boot:run
 
 2. Execute o NOTIFICATION Server:
    ```bash
    cd notification
-   ./mvnw spring-boot:run
+   ./mvn spring-boot:run
 
 3. Execute o ORDER Server:
    ```bash
     cd order
-    ./mvnw spring-boot:run
+    ./mvn spring-boot:run
 
 4. Execute o PRODUCT Server:
    ```bash
    cd product
-   ./mvnw spring-boot:run
+   ./mvn spring-boot:run
 
 5. Execute o AUTH Server:
    ```bash
    cd auth
-   ./mvnw spring-boot:run
+   ./mvn spring-boot:run
