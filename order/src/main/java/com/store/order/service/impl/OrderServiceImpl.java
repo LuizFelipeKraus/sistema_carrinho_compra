@@ -115,5 +115,37 @@ public class OrderServiceImpl extends GenericServiceImpl<Order, Long, OrderRepos
             rabbitTemplate.convertAndSend(exchange, routingKey, json);
         }catch(JsonProcessingException e){}
     }
+
+    public void updateStatus(Long orderId, Integer status ){
+        Order order = get(orderId, "Ordem de serviço não encontrado com o ID: ");
+        switch (status) {
+            case 2:
+                order.setStatusPagemento("Status: Esperando Pagamento");
+                order.setStatus(status);
+                update(order);
+                break;
+            case 3:
+                order.setStatusPagemento("Status: Enviado Para Pagamento");
+                order.setStatus(status);
+                update(order);
+                break;
+            case 4:
+                order.setStatusPagemento("Status: Pago");
+                order.setStatus(status);
+                update(order);
+                break;
+            case 5:
+                if (order.getStatus() == 4){
+                    order.setStatusPagemento("Status: Ordem Cancelada depois do Pagamento, Restituição em andamento!");
+                }else{
+                    order.setStatusPagemento("Status: Ordem Cancelada");
+                }
+                order.setStatus(status);
+                update(order);
+                break;
+            default:
+                break;
+        }
+    }
 }
 

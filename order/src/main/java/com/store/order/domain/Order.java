@@ -28,6 +28,9 @@ public class Order {
     @Column
     private Integer status = 1;
 
+    @Column
+    private String statusPagemento = "Status: Ordem Iniciada/Atualizada";
+
     @Column(nullable = false, updatable = false)
     private Long user_id;
 

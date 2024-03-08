@@ -36,13 +36,6 @@ public class EmailServiceImpl extends GenericServiceImpl{
     }
 
     public void sendEmail(String content, String email, String subject){
-//        SimpleMailMessage message = new SimpleMailMessage();
-//        message.setFrom(this.mailFrom);
-//        message.setTo(email);
-//        message.setSubject(subject);
-//        message.setText(content);
-//
-//
         try{
             MimeMessage message = mailSender.createMimeMessage();
             MimeMessageHelper helper = new MimeMessageHelper(message, true, "UTF-8");

@@ -23,6 +23,7 @@ public class OrderItem {
     @Column(nullable = false)
     private Long product_id;
 
+
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="order_id")
     @JsonBackReference
